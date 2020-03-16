@@ -11,8 +11,7 @@ class Header extends Component {
         <Link to="/signup">SignUp</Link>
         <Link to="/login">Login</Link>
         <Link to="/user">User Profile</Link>
-        <Link to="/upload">Upload</Link>
-        <Link to="/multi">Upload Multi</Link>
+        <Link to="/utils">Utils</Link>
       </ul>
     );
   }

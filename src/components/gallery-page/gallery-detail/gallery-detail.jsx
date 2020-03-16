@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import {
-  fetchGalleries,
-  toggleCheck,
-  check
-} from "../../../redux/gallery-main/gallery-main.action";
+import { fetchGalleries, toggleCheck, check } from "../../../redux/gallery-main/gallery-main.action";
 
 import "./gallery-detail.styles.scss";
 
@@ -14,7 +10,6 @@ import uuid from "uuid/v4";
 
 class GalleryDetail extends Component {
   handle = () => {
-    console.log("sd");
     this.props.checkDispatch();
   };
 
@@ -32,9 +27,7 @@ class GalleryDetail extends Component {
   handleMultiDownload = list => {
     const urlBase = `http://127.0.0.1:8000/api/download-multiple/`;
 
-    let urlsImageList = list.map(item => (
-      <input type="hidden" name="url" value={item.images} />
-    ));
+    let urlsImageList = list.map(item => <input type="hidden" name="url" value={item.images} />);
 
     return (
       <form action={urlBase} method="get">
@@ -50,9 +43,7 @@ class GalleryDetail extends Component {
 
   getGallery = (title, user) => {
     let galObj = this.props.galleries;
-    let idx = Object.keys(galObj).filter(
-      el => galObj[el].title === title && galObj[el].user === user
-    );
+    let idx = Object.keys(galObj).filter(el => galObj[el].title === title && galObj[el].user === user);
     return galObj[idx];
   };
 
@@ -66,9 +57,7 @@ class GalleryDetail extends Component {
           <h3>{galleryObj.title}</h3>
           {galleryObj.images.map((im, idx) => {
             let tmpIm;
-            let im_s3 = galleryObj.images_s3.filter(
-              img => img.unique_id === im.unique_id
-            );
+            let im_s3 = galleryObj.images_s3.filter(img => img.unique_id === im.unique_id);
 
             if (im_s3.length > 0) {
               tmpIm = im_s3[0];
@@ -80,10 +69,7 @@ class GalleryDetail extends Component {
                 <h3>{tmpIm.title}</h3>
                 <img src={tmpIm.images} alt={tmpIm.title} />
                 {this.handleDownload(tmpIm.images)}
-                <input
-                  type="checkbox"
-                  onClick={() => this.handleCheck(tmpIm)}
-                />
+                <input type="checkbox" onClick={() => this.handleCheck(tmpIm)} />
               </div>
             );
           })}

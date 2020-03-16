@@ -11,6 +11,7 @@ import ConfirmEmail from "../components/login-page/confirm-email/confirm-email";
 import UserContainer from "../components/user-container/user-container";
 import Upload from "../components/gallery-page/upload/upload";
 import UploadMultiImage from "../components/gallery-page/upload-multi-image/upload-multi-image";
+import Utils from "../components/utils/utils";
 
 class Routes extends Component {
   getGallery = props => {
@@ -24,16 +25,8 @@ class Routes extends Component {
       <div>
         <Header />
         <Switch>
-          <Route
-            exact
-            path="/galleries"
-            component={otherProps => <GalleryMain {...otherProps} />}
-          />
-          <Route
-            exact
-            path="/galleries/:galUser/:galName"
-            component={props => this.getGallery(props)}
-          />
+          <Route exact path="/galleries" component={otherProps => <GalleryMain {...otherProps} />} />
+          <Route exact path="/galleries/:galUser/:galName" component={props => this.getGallery(props)} />
 
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
@@ -41,6 +34,7 @@ class Routes extends Component {
           <Route exact path="/user" component={UserContainer} />
           <Route exact path="/upload" component={Upload} />
           <Route exact path="/multi" component={UploadMultiImage} />
+          <Route exact path="/utils" component={Utils} />
         </Switch>
       </div>
     );
